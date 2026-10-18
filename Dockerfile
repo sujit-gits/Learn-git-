@@ -3,11 +3,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+# Copy source code
 COPY . .
 
-RUN dotnet restore WebAPI.slnx
+# Restore the actual project
+RUN dotnet restore WebAPI/WebAPI.csproj
 
-RUN dotnet publish WebAPI.slnx \
+# Publish the application
+RUN dotnet publish WebAPI/WebAPI.csproj \
     --configuration Release \
     --no-restore \
     --output /app/publish
