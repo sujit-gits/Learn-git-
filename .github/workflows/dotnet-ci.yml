@@ -1,15 +1,11 @@
 
-name: .NET WebAPI CI
+name: DotNet-WebAPI-CI
 
 on:
   push:
-branches:
-  - main
-  - dev
+    branches: [main, dev]
   pull_request:
-    branches:
-      - main
-      - development
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
@@ -17,14 +13,13 @@ permissions:
 
 jobs:
   build:
-    name: Build WebAPI
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup .NET 8
+      - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '8.0.x'
